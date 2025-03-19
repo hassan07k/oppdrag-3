@@ -1,20 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Register</title>
     <link rel="stylesheet" href="../static/style.css">
 </head>
 <body>
-    
     <h2>Logg inn</h2>
-    <form method="GET" action="/quiz">
+    <form method="POST" action="/submit">
         <input type="email" name="email" placeholder="Email" required>
         <input type="password" name="password" placeholder="Password" required>
-        <button type="submit">Register</button>
+        <button type="submit">logg inn</button>
     </form>
-    <a href="/registrering">Har du ikke en konto? Registrer deg her!</a>
-    <script src="../static/script.js"></script>
+    <a href="../templates/registrering.htm">lag ny bruker</a>
 </body>
 </html>
