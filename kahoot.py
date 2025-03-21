@@ -1,5 +1,6 @@
 import sqlite3
-from flask import Flask, render_template, request, redirect, url_for, session, g, flash
+import uuid
+from flask import Flask, render_template, request, session, g, flash
 from werkzeug.security import generate_password_hash, check_password_hash
 
 app = Flask(__name__)
@@ -33,6 +34,10 @@ def close_connection(exception):
 def index():
     return render_template("index.htm")
 
+@app.route("/quiz")
+def quiz():
+    return render_template("quiz.htm")
+
 @app.route("/logginn", methods=["GET", "POST"])
 def logginn():
     if request.method == "POST":
@@ -46,10 +51,10 @@ def logginn():
         
         if user and check_password_hash(user[3], password):
             session["user_id"] = user[0]
-            return redirect(url_for("index"))
+            return render_template("quiz.htm")
         else:
             flash("Invalid credentials!", "error")
-            return redirect(url_for("logginn"))
+            return render_template("logginn.htm")
     
     return render_template("logginn.htm")
 
@@ -65,10 +70,10 @@ def registrer():
         try:
             cursor.execute("INSERT INTO users (full_name, email, password) VALUES (?, ?, ?)", (full_name, email, password))
             db.commit()
-            return redirect(url_for("logginn"))
+            return render_template("logginn.htm")
         except sqlite3.IntegrityError:
             flash("Email already registered!", "error")
-            return redirect(url_for("registrer"))
+            return render_template("registrering.htm")
     
     return render_template("registrering.htm")
 
