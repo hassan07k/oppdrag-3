@@ -70,7 +70,7 @@ def registrer():
         try:
             cursor.execute("INSERT INTO users (full_name, email, password) VALUES (?, ?, ?)", (full_name, email, password))
             db.commit()
-            return render_template("logginn.htm")
+            return render_template("quiz.htm")
         except sqlite3.IntegrityError:
             flash("Email already registered!", "error")
             return render_template("registrering.htm")
