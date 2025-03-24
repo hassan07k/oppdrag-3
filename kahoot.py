@@ -38,10 +38,6 @@ def index():
 def quiz():
     return render_template("quiz.htm")
 
-@app.route("/scoreboard")
-def scoreboard():
-    return render_template("scoreboard.htm")
-
 @app.route("/logginn", methods=["GET", "POST"])
 def logginn():
     if request.method == "POST":
@@ -55,7 +51,7 @@ def logginn():
         
         if user and check_password_hash(user[3], password):
             session["user_id"] = user[0]
-            return render_template("quiz.htm")
+            return render_template("hovedside.htm")
         else:
             flash("Invalid credentials!", "error")
             return render_template("logginn.htm")
