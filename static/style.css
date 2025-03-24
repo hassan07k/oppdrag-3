@@ -103,3 +103,21 @@ body {
     margin-top: 20px;
     font-size: 18px;
 }
+
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    margin: 50px;
+}
+.score-container {
+    border: 2px solid #000;
+    padding: 20px;
+    display: inline-block;
+    background-color: #f8f8f8;
+}
+.restart-btn {
+    margin-top: 20px;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+}

@@ -8,16 +8,28 @@ let currentQuestion = 0;
 let score = 0;
 
 function loadQuestion() {
+    const questionElement = document.getElementById("question");
+    const optionsDiv = document.getElementById("options");
+
     if (currentQuestion >= quizData.length) {
-        document.getElementById("question").innerText = "Quiz Over! Final Score: " + score;
-        document.getElementById("options").innerHTML = "";
+        questionElement.innerText = "Quiz Over! Final Score: " + score;
+        optionsDiv.innerHTML = "";
+
+        // Oppretter en knapp for å gå til scoreboard
+        const scoreboardButton = document.createElement("button");
+        scoreboardButton.innerText = "Gå til Scoreboard";
+        scoreboardButton.classList.add("scoreboard-btn");
+        scoreboardButton.onclick = () => {
+            window.location.href = `scoreboard.html?score=${score}`;
+        };
+
+        optionsDiv.appendChild(scoreboardButton);
         return;
     }
     
     const q = quizData[currentQuestion];
-    document.getElementById("question").innerText = q.question;
+    questionElement.innerText = q.question;
     
-    const optionsDiv = document.getElementById("options");
     optionsDiv.innerHTML = "";
     
     q.options.forEach(option => {
@@ -39,3 +51,4 @@ function checkAnswer(selectedOption) {
 }
 
 loadQuestion();
+
