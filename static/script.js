@@ -14,16 +14,6 @@ function loadQuestion() {
     if (currentQuestion >= quizData.length) {
         questionElement.innerText = "Quiz Over! Final Score: " + score;
         optionsDiv.innerHTML = "";
-
-        // Oppretter en knapp for å gå til scoreboard
-        const scoreboardButton = document.createElement("button");
-        scoreboardButton.innerText = "Gå til Scoreboard";
-        scoreboardButton.classList.add("scoreboard-btn");
-        scoreboardButton.onclick = () => {
-            window.location.href = `scoreboard.html?score=${score}`;
-        };
-
-        optionsDiv.appendChild(scoreboardButton);
         return;
     }
     
@@ -51,4 +41,8 @@ function checkAnswer(selectedOption) {
 }
 
 loadQuestion();
+
+
+// Hent score fra URL
+
 

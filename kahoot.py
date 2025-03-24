@@ -38,12 +38,20 @@ def index():
 def quiz():
     return render_template("quiz.htm")
 
+@app.route("/scoreboard")
+def scoreboard():
+    return render_template("scoreboard.htm")
+
+@app.route("/hovedside")
+def hovedside():
+    return render_template("hovedside.htm")
+
+
 @app.route("/logginn", methods=["GET", "POST"])
 def logginn():
     if request.method == "POST":
         email = request.form["email"]
         password = request.form["password"]
-        
         db = get_db()
         cursor = db.cursor()
         cursor.execute("SELECT * FROM users WHERE email = ?", (email,))
